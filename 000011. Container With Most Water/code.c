@@ -1,18 +1,16 @@
 int maxArea(int* height, int heightSize) {
-    // find points x and y
-    // water_amount = (loc_x - loc_y) * min(x,y)
+    // O(n) solution
 
     int i, j;
     int max_output = -1;
     int max_height = -1;
     
 
-    for(i = 0 ; i < heightSize; i ++) {
-        int max_len = heightSize - i - 1;
-        int possible_max = height[i] * max_len;
+    for(i = 0 ; i < heightSize - 1; i ++) {
+        int possible_max = height[i] * (heightSize - i - 1);
 
         // this height has a potential to proceed
-        if(possible_max > max_output ) {
+        if(possible_max > max_output && height[i] > max_height) {
             int output;
             for(j = heightSize - 1 ; j > i ; j --) {
                 
@@ -20,14 +18,14 @@ int maxArea(int* height, int heightSize) {
 
                 if( output > max_output) {
                     max_output = output;
-
-                    // no reason to search further
-                    if(height[j] >= height[i]) {
-                        break;
-                    }
+                }
+                // no reason to search further
+                if(height[j] >= height[i] || height[i] * (j-i) < max_output) {
+                    break;
                 }
             }
         }
+        if( max_height < height[i]) max_height = height[i];
     }
     return max_output;
 
