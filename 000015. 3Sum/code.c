@@ -1,3 +1,6 @@
+// TODO: further optimization with pruning    
+// TODO: There is a faster way to do with using a dictionary (array), but I like this memory-efficient way more.
+
 /**
  * Return an array of arrays of size *returnSize.
  * The sizes of the arrays are returned as *returnColumnSizes array.
@@ -48,7 +51,7 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
     int return_tmp[100000][3];
     int **return_ary;
 
-    // TODO: further optimization with pruning    
+    
 
     *returnSize = 0;
 
